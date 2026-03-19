@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: 240 10% 4%;
+  --color-foreground: 0 0% 98%;
+  --color-primary: 210 100% 60%;
+
+  /* 2. MAP THE FONTS TO TAILWIND VARIABLES */
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-heading: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+@layer base {
+  body {
+    /* 3. Apply Inter to all paragraph text */
+    @apply font-sans antialiased bg-[#0a0a0a] text-white selection:bg-primary/30;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    /* 4. Force all Headers to use Plus Jakarta Sans */
+    font-family: var(--font-heading);
+    @apply tracking-tight;
+  }
+}
