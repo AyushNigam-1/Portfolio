@@ -21,7 +21,7 @@ export default function Home() {
   const y3 = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <main ref={containerRef} className="relative min-h-screen bg-black w-full overflow-x-hidden selection:bg-primary/30 font-sans text-white">
+    <main ref={containerRef} className="relative min-h-screen bg-black w-full overflow-x-hidden selection:bg-primary/30 font-sans text-white scroll-smooth">
 
       {/* --- ANIMATED MOVING GRADIENT LAYER --- */}
       <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden">

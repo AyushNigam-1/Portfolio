@@ -1,10 +1,58 @@
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Terminal } from "lucide-react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
+import { ArrowRight, Terminal, Cpu, Zap, GitBranch, Globe } from "lucide-react";
+
+const TECH_STACK = ["TypeScript", "Next.js", "FastAPI", "Python", "LangGraph", "Redis", "MongoDB", "Docker"];
+
+const STATS = [
+  // { label: "Systems Shipped", value: "12+", icon: Zap },
+  { label: "Stack Depth", value: "Full", icon: Cpu },
+  // { label: "AI Integrations", value: "8+", icon: GitBranch },
+  { label: "Uptime", value: "99.9%", icon: Globe },
+];
+
+const TERMINAL_LINES = [
+  { delay: 0.8, prompt: true, text: "ls -la ./skills" },
+  { delay: 1.2, prompt: false, text: "drwxr-xr-x  AI/ML_Systems  LangGraph  RAG  Agents" },
+  { delay: 1.5, prompt: false, text: "drwxr-xr-x  Backend        FastAPI    Redis  MongoDB" },
+  { delay: 1.8, prompt: false, text: "drwxr-xr-x  Frontend       Next.js    Framer Motion" },
+  { delay: 2.2, prompt: true, text: "cat ./philosophy.md" },
+  { delay: 2.8, prompt: false, text: "→  Veni, Vidi, Vici. Shipping is the only metric.", accent: true },
+  { delay: 3.4, prompt: true, text: "", cursor: true },
+];
+
+function Scanlines() {
+  return (
+    <div
+      className="pointer-events-none absolute inset-0 z-10 opacity-[0.03]"
+      style={{
+        backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.8) 2px, rgba(255,255,255,0.8) 4px)",
+      }}
+    />
+  );
+}
+
+function CornerBracket({ position }: { position: "tl" | "tr" | "bl" | "br" }) {
+  const isTop = position.startsWith("t");
+  const isLeft = position.endsWith("l");
+  return (
+    <div className={`absolute w-6 h-6 ${isTop ? "top-0" : "bottom-0"} ${isLeft ? "left-0" : "right-0"}`}>
+      <div className={`absolute w-px h-6 bg-blue-400/40 ${isLeft ? "left-0" : "right-0"} ${isTop ? "top-0" : "bottom-0"}`} />
+      <div className={`absolute h-px w-6 bg-blue-400/40 ${isLeft ? "left-0" : "right-0"} ${isTop ? "top-0" : "bottom-0"}`} />
+    </div>
+  );
+}
 
 export function Hero() {
   const [typedTitle, setTypedTitle] = useState("");
+  const [visibleLines, setVisibleLines] = useState<number[]>([]);
   const fullTitle = "Ayush Nigam";
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const springX = useSpring(mouseX, { stiffness: 60, damping: 20 });
+  const springY = useSpring(mouseY, { stiffness: 60, damping: 20 });
 
   useEffect(() => {
     let i = 0;
@@ -12,128 +60,324 @@ export function Hero() {
       setTypedTitle(fullTitle.substring(0, i));
       i++;
       if (i > fullTitle.length) clearInterval(interval);
-    }, 100);
+    }, 90);
     return () => clearInterval(interval);
   }, []);
 
+  useEffect(() => {
+    TERMINAL_LINES.forEach((line, idx) => {
+      setTimeout(() => {
+        setVisibleLines(prev => [...prev, idx]);
+      }, line.delay * 1000);
+    });
+  }, []);
+
+  function handleMouseMove(e: React.MouseEvent) {
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (!rect) return;
+    mouseX.set(((e.clientX - rect.left) / rect.width - 0.5) * 30);
+    mouseY.set(((e.clientY - rect.top) / rect.height - 0.5) * 30);
+  }
+
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 overflow-hidden">
-      <div className="absolute inset-0 bg-grid-pattern opacity-20 bg-grid-fade pointer-events-none" />
+    <section
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen flex flex-col justify-center pt-24 pb-0 overflow-hidden"
+    >
+      {/* Fine grid */}
+      <div
+        className="absolute inset-0 opacity-[0.07] pointer-events-none"
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(59,130,246,0.5) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(59,130,246,0.5) 1px, transparent 1px)
+          `,
+          backgroundSize: "48px 48px",
+        }}
+      />
+      <Scanlines />
 
-      <div className="absolute top-1/4 -left-64 w-96 h-96 bg-primary/20 rounded-full blur-[128px] pointer-events-none" />
-      <div className="absolute bottom-1/4 -right-64 w-96 h-96 bg-accent/10 rounded-full blur-[128px] pointer-events-none" />
+      {/* Radial vignette */}
+      <div className="absolute inset-0 pointer-events-none"
+        style={{ background: "radial-gradient(ellipse 80% 60% at 50% 40%, transparent 40%, rgba(0,0,0,0.7) 100%)" }}
+      />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 w-full relative z-10 grid lg:grid-cols-2 gap-12 items-center">
+      {/* Parallax glow orbs */}
+      <motion.div
+        style={{ x: springX, y: springY }}
+        className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"
+      />
+      <motion.div
+        style={{ x: springX, y: springY }}
+        className="absolute bottom-1/4 -right-48 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"
+      />
 
-        <div className="flex flex-col items-start text-left">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-6"
-          >
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            <span className="text-xs font-mono text-muted-foreground tracking-wide">SYSTEMS_ONLINE</span>
-          </motion.div>
+      {/* ── MAIN GRID ── */}
+      <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 w-full">
 
-          <h1 className="text-5xl md:text-7xl font-bold tracking-tighter text-white mb-4 min-h-20">
-            {typedTitle}
-            <span className="animate-pulse text-primary">_</span>
-          </h1>
+        {/* Top status bar */}
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex items-center justify-between mb-10 pb-4 border-b border-white/5"
+        >
+          <div className="flex items-center gap-3">
+            <span className="relative flex size-2">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+              <span className="relative inline-flex rounded-full size-2 bg-emerald-400" />
+            </span>
+            <span className="text-xs font-mono text-emerald-400/80 tracking-widest uppercase">Systems Online</span>
+          </div>
+          <div className="hidden md:flex items-center gap-6">
+            {TECH_STACK.slice(0, 5).map((t, i) => (
+              <motion.span
+                key={t}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.1 * i }}
+                className="text-xs font-mono text-white/20 hover:text-white/50 transition-colors cursor-default"
+              >
+                {t}
+              </motion.span>
+            ))}
+          </div>
+          <span className="text-xs font-mono text-white/20">v2.0.0</span>
+        </motion.div>
 
-          <motion.h2
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="text-2xl md:text-3xl font-medium text-zinc-400 mb-6 leading-snug"
-          >
-            Full-Stack Software Engineer & Systems Architect
-          </motion.h2>
+        {/* Content columns */}
+        <div className="grid lg:grid-cols-[1fr_1fr] gap-8 xl:gap-16 items-start">
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5, duration: 0.5 }}
-            className="text-lg text-muted-foreground mb-10 max-w-xl leading-relaxed"
-          >
-            Building production-grade, scalable systems across AI, Modern Web, and distributed architectures.
-          </motion.p>
+          {/* LEFT COLUMN */}
+          <div className="flex flex-col">
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.7 }}
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <a
-              href="#projects"
-              className="group inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-semibold hover:bg-primary/90 transition-all shadow-[0_0_20px_rgba(59,130,246,0.3)] hover:shadow-[0_0_30px_rgba(59,130,246,0.5)]"
+            {/* Classification badge */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="inline-flex items-center gap-2 mb-6 w-fit"
             >
-              View Architecture & Projects
-              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-white/5 border border-white/10 text-white font-medium hover:bg-white/10 transition-all"
-            >
-              <Terminal size={18} />
-              Contact Me
-            </a>
-          </motion.div>
-        </div>
+              <div className="h-px w-8 bg-blue-400/60" />
+              <span className="text-xs font-mono text-blue-400/80 tracking-[0.2em] uppercase">Full-Stack · AI Systems · Open Source</span>
+            </motion.div>
 
-        {/* CUSTOM TAILWIND TERMINAL BOX */}
-        <div className="lg:pl-8 mt-12 lg:mt-0">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5, duration: 0.6 }}
-            className="w-full rounded-xl bg-black/60 backdrop-blur-xl border border-white/10 shadow-2xl overflow-hidden"
-          >
-            {/* Terminal Top Bar */}
-            <div className="flex items-center px-4 py-3 bg-white/3 border-b border-white/5">
-              <div className="flex gap-2">
-                <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]" />
-                <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]" />
-                <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-[inset_0_1px_1px_rgba(255,255,255,0.2)]" />
-              </div>
-              <div className="mx-auto text-xs font-mono text-zinc-500 mr-12 select-none">
-                ayush@portfolio:~
-              </div>
+            {/* Name — dramatic display */}
+            <div className="mb-4">
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="text-[clamp(3.5rem,9vw,7rem)] font-black tracking-[-0.04em] leading-[0.9] text-white"
+                style={{ fontFamily: "'Inter', sans-serif" }}
+              >
+                {typedTitle || "\u00A0"}
+                <motion.span
+                  animate={{ opacity: [1, 0, 1] }}
+                  transition={{ duration: 1, repeat: Infinity }}
+                  className="text-blue-400 ml-1"
+                >_</motion.span>
+              </motion.div>
             </div>
 
-            {/* Terminal Body */}
-            <div className="p-6">
-              <div className="flex flex-col gap-3 text-sm md:text-base font-mono">
-                <div className="flex gap-2">
-                  <span className="text-primary">ayush@portfolio</span>
-                  <span className="text-zinc-500">~</span>
-                  <span className="text-white">$</span>
-                  <span className="text-zinc-300">cat philosophy.txt</span>
+            {/* Subtitle with accent line */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.4 }}
+              className="flex items-start gap-3 mb-6"
+            >
+              <div className="w-1 self-stretch bg-blue-400/60 rounded-full mt-1 shrink-0" />
+              <p className="text-xl md:text-2xl font-medium text-zinc-300 leading-snug">
+                Building production-grade, scalable systems
+                <br />
+                <span className="text-zinc-500">across AI & Modern Web.</span>
+              </p>
+            </motion.div>
+
+            {/* Mini stat grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="grid grid-cols-2 gap-3 mb-8"
+            >
+              {STATS.map(({ label, value, icon: Icon }, i) => (
+                <motion.div
+                  key={label}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6 + i * 0.1 }}
+                  className="relative group rounded-lg border border-white/8 bg-white/[0.03] px-4 py-3 hover:border-blue-400/30 hover:bg-white/[0.05] transition-all"
+                >
+                  <CornerBracket position="tl" />
+                  <CornerBracket position="br" />
+                  <div className="flex items-center gap-2">
+                    <Icon size={12} className="text-blue-400/60 shrink-0" />
+                    <span className="text-lg font-bold text-white font-mono">{value}</span>
+                  </div>
+                  <p className="text-[10px] text-zinc-500 font-mono tracking-wide mt-0.5">{label}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.9 }}
+              className="flex flex-col sm:flex-row gap-3"
+            >
+              <a
+                href="#projects"
+                className="group relative inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg bg-blue-500 text-white font-semibold text-sm overflow-hidden transition-all hover:bg-blue-400"
+                style={{ boxShadow: "0 0 30px rgba(59,130,246,0.35), inset 0 1px 0 rgba(255,255,255,0.15)" }}
+              >
+                <span className="relative z-10 flex items-center gap-2">
+                  View Architecture & Projects
+                  <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                </span>
+                {/* Shimmer */}
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              </a>
+
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 bg-white/[0.03] text-white/80 font-medium text-sm hover:bg-white/[0.07] hover:border-white/20 hover:text-white transition-all"
+              >
+                <Terminal size={15} className="text-blue-400" />
+                Contact Me
+              </a>
+            </motion.div>
+          </div>
+
+          {/* RIGHT COLUMN — terminal */}
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4, duration: 0.7 }}
+            className="relative"
+          >
+            {/* Outer glow */}
+            <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-blue-500/20 via-transparent to-indigo-500/10 blur-sm pointer-events-none" />
+
+            <div className="relative rounded-xl bg-[#090c14] border border-white/10 overflow-hidden shadow-2xl">
+
+              {/* Terminal titlebar */}
+              <div className="flex items-center px-4 py-3 bg-white/[0.03] border-b border-white/5 gap-3">
+                <div className="flex gap-1.5">
+                  <div className="w-3 h-3 rounded-full bg-red-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
+                  <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1, duration: 0.8 }}
-                  className="text-accent pl-4 border-l-2 border-accent/30 italic"
-                >
-                  "Veni, Vidi, Vici — I came, I saw, I built. Action proves the skill. Shipping production-ready code is the only metric that matters."
-                </motion.div>
-                <motion.div
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 1.8 }}
-                  className="flex gap-2 mt-2"
-                >
-                  <span className="text-primary">ayush@portfolio</span>
-                  <span className="text-zinc-500">~</span>
-                  <span className="text-white">$</span>
-                  <span className="w-2 h-5 bg-white/80 animate-pulse inline-block align-middle" />
-                </motion.div>
+                <div className="flex-1 flex justify-center">
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-white/[0.04] border border-white/5">
+                    <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[11px] font-mono text-zinc-400">ayush@portfolio:~</span>
+                  </div>
+                </div>
+                <div className="w-16" />
+              </div>
+
+              {/* Terminal body */}
+              <div className="p-5 min-h-64 font-mono text-sm space-y-2">
+                {TERMINAL_LINES.map((line, idx) =>
+                  visibleLines.includes(idx) ? (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: -4 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="flex gap-2 leading-relaxed"
+                    >
+                      {line.prompt && (
+                        <>
+                          <span className="text-blue-400 shrink-0">❯</span>
+                          <span className="text-zinc-200">{line.text}</span>
+                        </>
+                      )}
+                      {!line.prompt && !line.accent && !line.cursor && (
+                        <span className="text-zinc-500 pl-4">{line.text}</span>
+                      )}
+                      {line.accent && (
+                        <span className="text-emerald-400/90 pl-4 italic border-l border-emerald-400/30">{line.text}</span>
+                      )}
+                      {line.cursor && (
+                        <span className="text-blue-400 shrink-0">❯</span>
+                      )}
+                      {line.cursor && (
+                        <motion.span
+                          animate={{ opacity: [1, 0, 1] }}
+                          transition={{ duration: 1, repeat: Infinity }}
+                          className="w-2 h-[1em] bg-blue-400 inline-block align-middle"
+                        />
+                      )}
+                    </motion.div>
+                  ) : null
+                )}
+              </div>
+
+              {/* Bottom status strip */}
+              <div className="flex items-center justify-between px-4 py-2 bg-blue-500/10 border-t border-blue-500/20">
+                <div className="flex items-center gap-4">
+                  <span className="text-[10px] font-mono text-blue-400/70">BRANCH: main</span>
+                  <span className="text-[10px] font-mono text-emerald-400/70">● CLEAN</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  {TECH_STACK.slice(0, 4).map(t => (
+                    <span key={t} className="text-[10px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors cursor-default">{t}</span>
+                  ))}
+                </div>
               </div>
             </div>
+
+            {/* Floating badge — top right */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.2 }}
+              className="absolute -top-4 -right-4 bg-[#090c14] border border-white/10 rounded-lg px-3 py-2 shadow-xl"
+            >
+              <div className="flex items-center gap-2">
+                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                <span className="text-[11px] font-mono text-zinc-300">Available for hire</span>
+              </div>
+            </motion.div>
+
+            {/* Floating badge — bottom left */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 1.5 }}
+              className="absolute -bottom-4 -left-4 bg-[#090c14] border border-white/10 rounded-lg px-3 py-2 shadow-xl"
+            >
+              <div className="flex items-center gap-2">
+                <GitBranch size={11} className="text-blue-400" />
+                <span className="text-[11px] font-mono text-zinc-300">Open Source Contributor</span>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
 
+        {/* ── BOTTOM METADATA BAR ── */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2 }}
+          className="mt-16 pt-4 border-t border-white/5 flex items-center justify-between flex-wrap gap-4"
+        >
+          <div className="flex items-center gap-6">
+            {["Kanpur, IN", "UTC+5:30", "Open to Remote"].map((item, i) => (
+              <span key={item} className="text-xs font-mono text-zinc-600 hover:text-zinc-400 transition-colors">
+                {item}
+              </span>
+            ))}
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="h-px w-16 bg-gradient-to-r from-transparent to-blue-400/40" />
+            <span className="text-[10px] font-mono text-zinc-600 tracking-widest">SCROLL TO EXPLORE</span>
+            <div className="h-px w-16 bg-gradient-to-l from-transparent to-blue-400/40" />
+          </div>
+        </motion.div>
       </div>
     </section>
   );
