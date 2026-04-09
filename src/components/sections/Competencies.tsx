@@ -21,7 +21,7 @@ const skills = [
     icon: Database,
     color: { accent: "#34d399", glow: "rgba(52,211,153,0.12)", border: "rgba(52,211,153,0.25)", tag: "rgba(52,211,153,0.08)" },
     tags: ["MongoDB", "PostgreSQL", "SQL", "Redis", "Pinecone (Vector DB)", "Mongoose", "Prisma", "FAISS (Vector DB)", "SQLAlchemy",
-      "Apollo Client"
+      "TanStack Query"
     ],
     depth: 82,
   },
@@ -38,14 +38,14 @@ const skills = [
     category: "DevOps & Infrastructure",
     icon: Box,
     color: { accent: "#fb923c", glow: "rgba(251,146,60,0.12)", border: "rgba(251,146,60,0.25)", tag: "rgba(251,146,60,0.08)" },
-    tags: ["Docker", "Docker Compose", "GitHub Actions", "Nginx", "Microservices"],
+    tags: ["Docker", "Docker Compose", "Hosting", "GitHub Actions", "Nginx", "Microservices"],
     depth: 78,
   },
   {
     category: "Security & Cryptography",
     icon: ShieldCheck,
     color: { accent: "#facc15", glow: "rgba(250,204,21,0.12)", border: "rgba(250,204,21,0.25)", tag: "rgba(250,204,21,0.08)" },
-    tags: ["OAuth 2.0 & JWT", "RBAC", "Data Encryption", "Rate Limiter"],
+    tags: ["OAuth 2.0 & JWT", "RBAC", , "Middleware", "Data Encryption", "Rate Limiter", 'CORS'],
     depth: 75,
   },
 ];
@@ -55,7 +55,7 @@ export function Competencies() {
     <section id="competencies" className="py-28 bg-transparent border-t border-white/5 relative font-sans overflow-hidden">
 
       {/* Ambient background glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-blue-500/5 blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-150 h-75 bg-blue-500/5 blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
@@ -91,7 +91,7 @@ export function Competencies() {
           </div>
 
           {/* Full-width rule */}
-          <div className="mt-8 h-px w-full bg-gradient-to-r from-blue-400/30 via-white/5 to-transparent" />
+          <div className="mt-8 h-px w-full bg-linear-to-r from-blue-400/30 via-white/5 to-transparent" />
         </motion.div>
 
         {/* ── SKILL CARDS ── */}
@@ -117,7 +117,7 @@ export function Competencies() {
               >
                 {/* Top colored bar */}
                 <div
-                  className="h-[2px] w-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"
+                  className="h-0.5 w-full opacity-60 group-hover:opacity-100 transition-opacity duration-300"
                   style={{ background: `linear-gradient(to right, ${skill.color.accent}, transparent)` }}
                 />
 
@@ -140,7 +140,7 @@ export function Competencies() {
                       <h3 className="text-base font-bold text-white leading-tight">{skill.category}</h3>
                       <div className="flex items-center gap-2 mt-1.5">
                         {/* Depth bar */}
-                        <div className="w-20 h-[3px] rounded-full bg-white/8 overflow-hidden">
+                        <div className="w-20 h-0.75 rounded-full bg-white/8 overflow-hidden">
                           <motion.div
                             className="h-full rounded-full"
                             style={{ background: skill.color.accent }}
@@ -197,13 +197,13 @@ export function Competencies() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.6 }}
-          className="mt-12 p-5 rounded-2xl border border-white/5 bg-white/[0.02]"
+          className="mt-12 p-5 rounded-2xl border border-white/5 bg-white/2"
         >
           <div className="flex items-center justify-between mb-4">
             <span className="text-xs font-mono text-zinc-500 tracking-widest uppercase">Expertise Spectrum</span>
             <div className="flex items-center gap-4 text-[10px] font-mono text-zinc-600">
               <span>Familiar</span>
-              <div className="w-16 h-px bg-gradient-to-r from-zinc-700 to-zinc-400" />
+              <div className="w-16 h-px bg-linear-to-r from-zinc-700 to-zinc-400" />
               <span>Expert</span>
             </div>
           </div>

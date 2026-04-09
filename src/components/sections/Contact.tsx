@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, Send, Terminal, ArrowUpRight, MapPin, Clock } from "lucide-react";
+import { Github, Linkedin, Twitter, Mail, Send, Terminal, ArrowUpRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -36,20 +36,39 @@ export function Contact() {
 
   const onSubmit = async (data: ContactFormValues) => {
     setIsSubmitting(true);
-    await new Promise(r => setTimeout(r, 1500));
-    console.log("Form data:", data);
-    reset();
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
+
+    try {
+      const res = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+          subject: `[Portfolio] New message from ${data.name}`,
+          from_name: data.name,
+          email: data.email,
+          message: data.message,
+        }),
+      });
+
+      const json = await res.json();
+      if (!json.success) throw new Error(json.message || "Submission failed");
+
+      reset();
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (err: any) {
+      // setServerError(err.message ?? "Failed to send. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <section id="contact" className="py-28 relative border-t border-white/5 overflow-hidden font-sans">
 
       {/* Ambient glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[300px] bg-blue-500/5 blur-[140px] pointer-events-none" />
-      <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-indigo-500/5 blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-175 h-75 bg-blue-500/5 blur-[140px] pointer-events-none" />
+      <div className="absolute top-1/4 right-0 w-75 h-75 bg-indigo-500/5 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
@@ -81,7 +100,7 @@ export function Contact() {
               <span className="text-xs font-mono text-emerald-400">Available for hire</span>
             </div>
           </div>
-          <div className="mt-8 h-px w-full bg-gradient-to-r from-blue-400/30 via-white/5 to-transparent" />
+          <div className="mt-8 h-px w-full bg-linear-to-r from-blue-400/30 via-white/5 to-transparent" />
         </motion.div>
 
         {/* ── MAIN GRID ── */}
@@ -105,7 +124,7 @@ export function Contact() {
               {AVAILABILITY.map(({ label, value, live }) => (
                 <div
                   key={label}
-                  className="relative rounded-xl border border-white/6 bg-white/[0.02] px-4 py-3 overflow-hidden group hover:border-white/12 transition-colors"
+                  className="relative rounded-xl border border-white/6 bg-white/2 px-4 py-3 overflow-hidden group hover:border-white/12 transition-colors"
                 >
                   <div className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase mb-1">{label}</div>
                   <div className="flex items-center gap-2">
@@ -126,7 +145,7 @@ export function Contact() {
             {/* Email CTA */}
             <a
               href="mailto:hello@ayushnigam.dev"
-              className="group flex items-center justify-between p-5 rounded-xl border border-white/8 bg-white/[0.02] hover:bg-white/[0.05] hover:border-blue-400/30 transition-all"
+              className="group flex items-center justify-between p-5 rounded-xl border border-white/8 bg-white/2 hover:bg-white/5 hover:border-blue-400/30 transition-all"
               style={{ boxShadow: "0 0 0 0 rgba(96,165,250,0)" }}
             >
               <div className="flex items-center gap-4">
@@ -153,7 +172,7 @@ export function Contact() {
                   href={href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center gap-4 p-3 rounded-xl border border-transparent hover:border-white/8 hover:bg-white/[0.03] transition-all"
+                  className="group flex items-center gap-4 p-3 rounded-xl border border-transparent hover:border-white/8 hover:bg-white/3 transition-all"
                 >
                   <div className="w-9 h-9 rounded-lg bg-white/4 border border-white/8 flex items-center justify-center text-zinc-500 group-hover:text-white group-hover:border-white/15 transition-all">
                     <Icon size={16} />
@@ -176,13 +195,11 @@ export function Contact() {
             transition={{ delay: 0.3 }}
             className="relative"
           >
-            {/* Card glow */}
-            <div className="absolute -inset-px rounded-2xl bg-gradient-to-br from-blue-500/15 via-transparent to-indigo-500/10 blur-sm pointer-events-none" />
 
             <div className="relative rounded-2xl bg-[#090c14] border border-white/10 overflow-hidden shadow-2xl">
 
               {/* Terminal bar */}
-              <div className="flex items-center gap-3 px-5 py-3.5 bg-white/[0.02] border-b border-white/5">
+              <div className="flex items-center gap-3 px-5 py-3.5 bg-white/2 border-b border-white/5">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/70" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/70" />
@@ -219,7 +236,7 @@ export function Contact() {
                         <label className="text-[11px] font-mono text-zinc-500 tracking-widest uppercase">Name</label>
                         <input
                           {...register("name")}
-                          className="w-full bg-white/[0.04] border border-white/8 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-zinc-700 focus:outline-none focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/20 transition-all font-mono"
+                          className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-zinc-700 focus:outline-none focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/20 transition-all font-mono"
                           placeholder="John Doe"
                         />
                         {errors.name && <p className="text-xs text-red-400 font-mono mt-1">{errors.name.message}</p>}
@@ -228,7 +245,7 @@ export function Contact() {
                         <label className="text-[11px] font-mono text-zinc-500 tracking-widest uppercase">Email</label>
                         <input
                           {...register("email")}
-                          className="w-full bg-white/[0.04] border border-white/8 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-zinc-700 focus:outline-none focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/20 transition-all font-mono"
+                          className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-zinc-700 focus:outline-none focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/20 transition-all font-mono"
                           placeholder="john@example.com"
                         />
                         {errors.email && <p className="text-xs text-red-400 font-mono mt-1">{errors.email.message}</p>}
@@ -240,7 +257,7 @@ export function Contact() {
                       <textarea
                         {...register("message")}
                         rows={5}
-                        className="w-full bg-white/[0.04] border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder:text-zinc-700 focus:outline-none focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/20 transition-all resize-none font-mono leading-relaxed"
+                        className="w-full bg-white/4 border border-white/8 rounded-lg px-4 py-3 text-sm text-white placeholder:text-zinc-700 focus:outline-none focus:border-blue-400/50 focus:ring-1 focus:ring-blue-400/20 transition-all resize-none font-mono leading-relaxed"
                         placeholder="Describe your project, system requirements, or just say hello..."
                       />
                       {errors.message && <p className="text-xs text-red-400 font-mono mt-1">{errors.message.message}</p>}
@@ -266,7 +283,7 @@ export function Contact() {
                         )}
                       </span>
                       {/* Shimmer */}
-                      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/15 to-transparent" />
+                      <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/15 to-transparent" />
                     </button>
 
                     <p className="text-center text-[10px] font-mono text-zinc-700">

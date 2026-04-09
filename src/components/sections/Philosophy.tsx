@@ -51,7 +51,7 @@ export function Philosophy() {
         style={{ background: "radial-gradient(ellipse 80% 70% at 50% 50%, transparent 30%, #05070f 100%)" }}
       />
       {/* Accent glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-500/5 blur-[160px] pointer-events-none" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-100 bg-blue-500/5 blur-[160px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
@@ -119,7 +119,7 @@ export function Philosophy() {
                 whileInView={{ width: "6rem" }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.4, duration: 0.6, ease: "easeOut" }}
-                className="mt-8 h-[2px] rounded-full"
+                className="mt-8 h-0.5 rounded-full"
                 style={{ background: "linear-gradient(to right, #60a5fa, #a78bfa, transparent)" }}
               />
             </div>
@@ -158,7 +158,7 @@ export function Philosophy() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.1, duration: 0.5 }}
-                className="group relative rounded-xl border border-white/6 bg-white/[0.02] p-5 hover:border-white/12 hover:bg-white/[0.04] transition-all duration-300 overflow-hidden"
+                className="group relative rounded-xl border border-white/6 bg-white/2 p-5 hover:border-white/12 hover:bg-white/4 transition-all duration-300 overflow-hidden"
               >
                 {/* Top accent bar */}
                 <div
@@ -200,13 +200,13 @@ export function Philosophy() {
           ].map(({ value, label }, i) => (
             <div
               key={label}
-              className={`relative px-6 py-5 bg-white/[0.015] hover:bg-white/[0.035] transition-colors group ${i < 3 ? "border-r border-white/6" : ""
+              className={`relative px-6 py-5 bg-white/1.5 hover:bg-white/[0.035] transition-colors group ${i < 3 ? "border-r border-white/6" : ""
                 }`}
             >
               <div className="text-2xl font-black text-white font-mono mb-0.5">{value}</div>
               <div className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase">{label}</div>
               <div
-                className="absolute bottom-0 left-0 right-0 h-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                className="absolute bottom-0 left-0 right-0 h-px opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                 style={{ background: "linear-gradient(to right, #60a5fa40, transparent)" }}
               />
             </div>

@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Terminal, Cpu, Zap, GitBranch, Globe } from "lucide-react";
+import { ArrowRight, Terminal, Cpu, GitBranch, Globe } from "lucide-react";
 
 const TECH_STACK = ["TypeScript", "Next.js", "FastAPI", "Python", "LangGraph", "Redis", "MongoDB", "Docker"];
 
@@ -106,11 +106,11 @@ export function Hero() {
       {/* Parallax glow orbs */}
       <motion.div
         style={{ x: springX, y: springY }}
-        className="absolute top-1/4 -left-48 w-[500px] h-[500px] bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"
+        className="absolute top-1/4 -left-48 w-125 h-125 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"
       />
       <motion.div
         style={{ x: springX, y: springY }}
-        className="absolute bottom-1/4 -right-48 w-[400px] h-[400px] bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"
+        className="absolute bottom-1/4 -right-48 w-100 h-100 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"
       />
 
       {/* ── MAIN GRID ── */}
@@ -207,7 +207,7 @@ export function Hero() {
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 + i * 0.1 }}
-                  className="relative group rounded-lg border border-white/8 bg-white/[0.03] px-4 py-3 hover:border-blue-400/30 hover:bg-white/[0.05] transition-all"
+                  className="relative group rounded-lg border border-white/8 bg-white/3 px-4 py-3 hover:border-blue-400/30 hover:bg-white/5 transition-all"
                 >
                   <CornerBracket position="tl" />
                   <CornerBracket position="br" />
@@ -237,12 +237,12 @@ export function Hero() {
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </span>
                 {/* Shimmer */}
-                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+                <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent" />
               </a>
 
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 bg-white/[0.03] text-white/80 font-medium text-sm hover:bg-white/[0.07] hover:border-white/20 hover:text-white transition-all"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-lg border border-white/10 bg-white/3 text-white/80 font-medium text-sm hover:bg-white/[0.07] hover:border-white/20 hover:text-white transition-all"
               >
                 <Terminal size={15} className="text-blue-400" />
                 Contact Me
@@ -258,19 +258,19 @@ export function Hero() {
             className="relative"
           >
             {/* Outer glow */}
-            <div className="absolute -inset-px rounded-xl bg-gradient-to-br from-blue-500/20 via-transparent to-indigo-500/10 blur-sm pointer-events-none" />
+            <div className="absolute -inset-px rounded-xl bg-linear-to-br from-blue-500/20 via-transparent to-indigo-500/10 blur-sm pointer-events-none" />
 
             <div className="relative rounded-xl bg-[#090c14] border border-white/10 overflow-hidden shadow-2xl">
 
               {/* Terminal titlebar */}
-              <div className="flex items-center px-4 py-3 bg-white/[0.03] border-b border-white/5 gap-3">
+              <div className="flex items-center px-4 py-3 bg-white/3 border-b border-white/5 gap-3">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
                   <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
                   <div className="w-3 h-3 rounded-full bg-green-500/80" />
                 </div>
                 <div className="flex-1 flex justify-center">
-                  <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-white/[0.04] border border-white/5">
+                  <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-white/4 border border-white/5">
                     <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
                     <span className="text-[11px] font-mono text-zinc-400">ayush@portfolio:~</span>
                   </div>
@@ -366,16 +366,16 @@ export function Hero() {
           className="mt-16 pt-4 border-t border-white/5 flex items-center justify-between flex-wrap gap-4"
         >
           <div className="flex items-center gap-6">
-            {["Kanpur, IN", "UTC+5:30", "Open to Remote"].map((item, i) => (
+            {["Kanpur, IN", "UTC+5:30", "Open to Remote"].map((item) => (
               <span key={item} className="text-xs font-mono text-zinc-600 hover:text-zinc-400 transition-colors">
                 {item}
               </span>
             ))}
           </div>
           <div className="flex items-center gap-2">
-            <div className="h-px w-16 bg-gradient-to-r from-transparent to-blue-400/40" />
+            <div className="h-px w-16 bg-linear-to-r from-transparent to-blue-400/40" />
             <span className="text-[10px] font-mono text-zinc-600 tracking-widest">SCROLL TO EXPLORE</span>
-            <div className="h-px w-16 bg-gradient-to-l from-transparent to-blue-400/40" />
+            <div className="h-px w-16 bg-linear-to-l from-transparent to-blue-400/40" />
           </div>
         </motion.div>
       </div>
