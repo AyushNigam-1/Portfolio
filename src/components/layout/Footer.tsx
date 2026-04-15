@@ -1,4 +1,3 @@
-import { motion } from "framer-motion";
 import { Github, Linkedin, Twitter, ArrowUpRight, Code2, Heart } from "lucide-react";
 
 const NAV_LINKS = [
