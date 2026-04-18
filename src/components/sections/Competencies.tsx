@@ -6,7 +6,7 @@ const skills = [
     category: "Frontend & UI/UX",
     icon: Code2,
     color: { accent: "#60a5fa", glow: "rgba(96,165,250,0.12)", border: "rgba(96,165,250,0.25)", tag: "rgba(96,165,250,0.08)" },
-    tags: ["Next.js (Turbopack)", "React 19", "Vue.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "Headless UI", "Framer Motion", "Apollo Client"],
+    tags: ["Next.js", "React 19", "Vue.js", "TypeScript", "Tailwind CSS", "Shadcn UI", "Headless UI", "Framer Motion", "Apollo Client"],
     depth: 95,
   },
   {
@@ -139,7 +139,6 @@ export function Competencies() {
                     <div>
                       <h3 className="text-base font-bold text-white leading-tight">{skill.category}</h3>
                       <div className="flex items-center gap-2 mt-1.5">
-                        {/* Depth bar */}
                         <div className="w-20 h-0.75 rounded-full bg-white/8 overflow-hidden">
                           <motion.div
                             className="h-full rounded-full"

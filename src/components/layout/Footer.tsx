@@ -1,19 +1,9 @@
-import { Github, Linkedin, Twitter, ArrowUpRight, Code2, Heart } from "lucide-react";
-
 const NAV_LINKS = [
   { name: "Competencies", href: "#competencies" },
   { name: "Projects", href: "#projects" },
   { name: "Philosophy", href: "#philosophy" },
   { name: "Contact", href: "#contact" },
 ];
-
-const SOCIALS = [
-  { icon: Github, href: "https://github.com/ayush-nigam", label: "GitHub" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-];
-
-const STACK = ["Next.js", "FastAPI", "Framer Motion", "TypeScript", "Tailwind CSS"];
 
 export function Footer() {
   return (
@@ -88,28 +78,10 @@ export function Footer() {
               </a>
             ))}
           </div>
-
-          {/* Socials */}
-          <div className="flex flex-col gap-3">
-            <div className="text-[10px] font-mono text-zinc-700 tracking-widest uppercase mb-1">Connect</div>
-            {SOCIALS.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noreferrer"
-                className="group flex items-center gap-2 text-sm text-zinc-500 hover:text-white transition-colors duration-150 w-fit"
-              >
-                <Icon size={13} />
-                {label}
-                <ArrowUpRight size={11} className="opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-150" />
-              </a>
-            ))}
-          </div>
         </div>
 
         {/* ── LOWER ROW ── */}
-        <div className="py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div className="py-6 flex flex-col sm:flex-row items-center justify-center gap-4">
 
           <p className="text-xs font-mono text-zinc-700 flex items-center gap-2 flex-wrap justify-center sm:justify-start">
             <span>© {new Date().getFullYear()} Ayush Nigam</span>
@@ -117,20 +89,8 @@ export function Footer() {
             <span>All rights reserved</span>
           </p>
 
-          {/* Stack pills */}
-          <div className="flex items-center gap-1.5 flex-wrap justify-center">
-            <Code2 size={11} className="text-zinc-700 shrink-0" />
-            {STACK.map((tech, i) => (
-              <span key={tech} className="flex items-center gap-1.5">
-                <span className="text-[10px] font-mono text-zinc-700 hover:text-zinc-400 transition-colors cursor-default">{tech}</span>
-                {i < STACK.length - 1 && <span className="text-zinc-800 text-[10px]">·</span>}
-              </span>
-            ))}
-          </div>
 
-          <p className="text-xs font-mono text-zinc-700 flex items-center gap-1.5">
-            Crafted with <Heart size={10} className="text-blue-400/60 fill-blue-400/60" /> in Kanpur, IN
-          </p>
+
         </div>
 
       </div>

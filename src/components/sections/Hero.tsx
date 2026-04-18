@@ -1,13 +1,11 @@
 import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import { ArrowRight, Terminal, Cpu, GitBranch, Globe } from "lucide-react";
+import { ArrowRight, Terminal, Cpu, Globe } from "lucide-react";
 
 const TECH_STACK = ["TypeScript", "Next.js", "FastAPI", "Python", "LangGraph", "Redis", "MongoDB", "Docker"];
 
 const STATS = [
-  // { label: "Systems Shipped", value: "12+", icon: Zap },
   { label: "Stack Depth", value: "Full", icon: Cpu },
-  // { label: "AI Integrations", value: "8+", icon: GitBranch },
   { label: "Uptime", value: "99.9%", icon: Globe },
 ];
 
@@ -85,7 +83,6 @@ export function Hero() {
       onMouseMove={handleMouseMove}
       className="relative min-h-screen flex flex-col justify-center pt-24 pb-0 overflow-hidden"
     >
-      {/* Fine grid */}
       <div
         className="absolute inset-0 opacity-[0.07] pointer-events-none"
         style={{
@@ -98,12 +95,10 @@ export function Hero() {
       />
       <Scanlines />
 
-      {/* Radial vignette */}
       <div className="absolute inset-0 pointer-events-none"
         style={{ background: "radial-gradient(ellipse 80% 60% at 50% 40%, transparent 40%, rgba(0,0,0,0.7) 100%)" }}
       />
 
-      {/* Parallax glow orbs */}
       <motion.div
         style={{ x: springX, y: springY }}
         className="absolute top-1/4 -left-48 w-125 h-125 bg-blue-600/10 rounded-full blur-[140px] pointer-events-none"
@@ -113,9 +108,7 @@ export function Hero() {
         className="absolute bottom-1/4 -right-48 w-100 h-100 bg-indigo-500/10 rounded-full blur-[120px] pointer-events-none"
       />
 
-      {/* ── MAIN GRID ── */}
       <div className="relative z-20 max-w-7xl mx-auto px-6 md:px-12 w-full">
-
         {/* Top status bar */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
@@ -146,28 +139,23 @@ export function Hero() {
           <span className="text-xs font-mono text-white/20">v2.0.0</span>
         </motion.div>
 
-        {/* Content columns */}
         <div className="grid lg:grid-cols-[1fr_1fr] gap-8 xl:gap-16 items-start">
-
           {/* LEFT COLUMN */}
           <div className="flex flex-col">
-
-            {/* Classification badge */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               className="inline-flex items-center gap-2 mb-6 w-fit"
             >
               <div className="h-px w-8 bg-blue-400/60" />
               <span className="text-xs font-mono text-blue-400/80 tracking-[0.2em] uppercase">Full-Stack · AI Systems · Open Source</span>
-            </motion.div>
+            </motion.div> */}
 
-            {/* Name — dramatic display */}
             <div className="mb-4">
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                className="text-[clamp(3.5rem,9vw,7rem)] font-black tracking-[-0.04em] leading-[0.9] text-white"
+                className="text-[clamp(3rem,7vw,7rem)] md:text-[clamp(2rem,5vw,5rem)] font-black tracking-[-0.04em] leading-[0.9] text-white"
                 style={{ fontFamily: "'Inter', sans-serif" }}
               >
                 {typedTitle || "\u00A0"}
@@ -179,7 +167,6 @@ export function Hero() {
               </motion.div>
             </div>
 
-            {/* Subtitle with accent line */}
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -194,7 +181,6 @@ export function Hero() {
               </p>
             </motion.div>
 
-            {/* Mini stat grid */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -220,7 +206,6 @@ export function Hero() {
               ))}
             </motion.div>
 
-            {/* CTAs */}
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -236,7 +221,6 @@ export function Hero() {
                   View Architecture & Projects
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                 </span>
-                {/* Shimmer */}
                 <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/20 to-transparent" />
               </a>
 
@@ -250,19 +234,16 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT COLUMN — terminal */}
+          {/* RIGHT COLUMN — Terminal */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4, duration: 0.7 }}
             className="relative"
           >
-            {/* Outer glow */}
             <div className="absolute -inset-px rounded-xl bg-linear-to-br from-blue-500/20 via-transparent to-indigo-500/10 blur-sm pointer-events-none" />
 
             <div className="relative rounded-xl bg-[#090c14] border border-white/10 overflow-hidden shadow-2xl">
-
-              {/* Terminal titlebar */}
               <div className="flex items-center px-4 py-3 bg-white/3 border-b border-white/5 gap-3">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/80" />
@@ -278,8 +259,8 @@ export function Hero() {
                 <div className="w-16" />
               </div>
 
-              {/* Terminal body */}
-              <div className="p-5 min-h-64 font-mono text-sm space-y-2">
+              {/* 🌟 FIX: Cleaned up mapping logic to prevent double arrows and fix alignment */}
+              <div className="p-5 min-h-64 font-mono text-sm space-y-1.5">
                 {TERMINAL_LINES.map((line, idx) =>
                   visibleLines.includes(idx) ? (
                     <motion.div
@@ -287,28 +268,29 @@ export function Hero() {
                       initial={{ opacity: 0, x: -4 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ duration: 0.2 }}
-                      className="flex gap-2 leading-relaxed"
+                      className="flex items-center gap-3 leading-relaxed min-h-6"
                     >
-                      {line.prompt && (
-                        <>
-                          <span className="text-blue-400 shrink-0">❯</span>
-                          <span className="text-zinc-200">{line.text}</span>
-                        </>
+                      {line.prompt && <span className="text-blue-400 font-bold shrink-0">❯</span>}
+
+                      {!line.prompt && !line.accent && (
+                        <span className="text-zinc-500 pl-5">{line.text}</span>
                       )}
-                      {!line.prompt && !line.accent && !line.cursor && (
-                        <span className="text-zinc-500 pl-4">{line.text}</span>
-                      )}
+
                       {line.accent && (
-                        <span className="text-emerald-400/90 pl-4 italic border-l border-emerald-400/30">{line.text}</span>
+                        <span className="text-emerald-400/90 pl-3 italic border-l-2 border-emerald-400/30">
+                          {line.text}
+                        </span>
                       )}
-                      {line.cursor && (
-                        <span className="text-blue-400 shrink-0">❯</span>
+
+                      {line.prompt && line.text && (
+                        <span className="text-zinc-200">{line.text}</span>
                       )}
+
                       {line.cursor && (
                         <motion.span
                           animate={{ opacity: [1, 0, 1] }}
                           transition={{ duration: 1, repeat: Infinity }}
-                          className="w-2 h-[1em] bg-blue-400 inline-block align-middle"
+                          className="w-2.5 h-4 bg-blue-400 inline-block align-middle ml-1"
                         />
                       )}
                     </motion.div>
@@ -316,7 +298,6 @@ export function Hero() {
                 )}
               </div>
 
-              {/* Bottom status strip */}
               <div className="flex items-center justify-between px-4 py-2 bg-blue-500/10 border-t border-blue-500/20">
                 <div className="flex items-center gap-4">
                   <span className="text-[10px] font-mono text-blue-400/70">BRANCH: main</span>
@@ -329,53 +310,27 @@ export function Hero() {
                 </div>
               </div>
             </div>
-
-            {/* Floating badge — top right */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.2 }}
-              className="absolute -top-4 -right-4 bg-[#090c14] border border-white/10 rounded-lg px-3 py-2 shadow-xl"
-            >
-              <div className="flex items-center gap-2">
-                <span className="size-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                <span className="text-[11px] font-mono text-zinc-300">Available for hire</span>
-              </div>
-            </motion.div>
-
-            {/* Floating badge — bottom left */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.5 }}
-              className="absolute -bottom-4 -left-4 bg-[#090c14] border border-white/10 rounded-lg px-3 py-2 shadow-xl"
-            >
-              <div className="flex items-center gap-2">
-                <GitBranch size={11} className="text-blue-400" />
-                <span className="text-[11px] font-mono text-zinc-300">Open Source Contributor</span>
-              </div>
-            </motion.div>
           </motion.div>
         </div>
 
-        {/* ── BOTTOM METADATA BAR ── */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1.2 }}
-          className="mt-16 pt-4 border-t border-white/5 flex items-center justify-between flex-wrap gap-4"
+          className="my-6 pt-4 border-t border-white/5 flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 md:gap-4"
         >
-          <div className="flex items-center gap-6">
+          <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
             {["Kanpur, IN", "UTC+5:30", "Open to Remote"].map((item) => (
-              <span key={item} className="text-xs font-mono text-zinc-600 hover:text-zinc-400 transition-colors">
+              <span key={item} className="text-xs font-mono text-zinc-600 hover:text-zinc-400 transition-colors text-center">
                 {item}
               </span>
             ))}
           </div>
-          <div className="flex items-center gap-2">
-            <div className="h-px w-16 bg-linear-to-r from-transparent to-blue-400/40" />
-            <span className="text-[10px] font-mono text-zinc-600 tracking-widest">SCROLL TO EXPLORE</span>
-            <div className="h-px w-16 bg-linear-to-l from-transparent to-blue-400/40" />
+
+          <div className="flex items-center justify-center gap-2">
+            <div className="h-px w-12 md:w-16 bg-linear-to-r from-transparent to-blue-400/40" />
+            <span className="text-[10px] font-mono text-zinc-600 tracking-widest text-center">SCROLL TO EXPLORE</span>
+            <div className="h-px w-12 md:w-16 bg-linear-to-l from-transparent to-blue-400/40" />
           </div>
         </motion.div>
       </div>

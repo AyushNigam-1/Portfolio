@@ -194,7 +194,7 @@ export function Philosophy() {
         >
           {[
             { value: "100%", label: "Self-Taught" },
-            { value: "3+", label: "Years Building" },
+            { value: "2+", label: "Years Building" },
             { value: "Zero", label: "Certificate Dependency" },
             { value: "∞", label: "Problems to Solve" },
           ].map(({ value, label }, i) => (

@@ -12,7 +12,7 @@ const projects = [
   {
     index: "01",
     name: "Briefly.AI",
-    subtitle: "Memory-Driven AI Workspace & Autonomous Task Agent",
+    subtitle: "AI Assistant Workspace & Automation Tool",
     type: "Full-Stack · AI · Automation",
     accent: "#60a5fa",
     glow: "rgba(96,165,250,0.08)",
@@ -29,9 +29,9 @@ const projects = [
       "Virtua",
     ],
     system:
-      "A production-grade AI assistant acting as a digital brain and background worker. Features persistent long-term memory extraction, stateless incognito sessions, multi-model routing (Llama, Qwen, Kimi), and real-time voice synthesis with Redis caching.",
+      "A full-stack AI chat application that manages user sessions, extracts facts for long-term memory, and supports multiple language models (Llama, Qwen, Kimi) alongside an incognito mode for stateless interactions.",
     highlight:
-      "Engineered a custom n8n automation interceptor for zero-hallucination background task generation. Optimized UI performance using Virtua for infinite chat scrolling, implementing strict mathematical composite keys and pure opacity transitions to completely eliminate DOM layout shifts during real-time LLM streaming.",
+      "Integrated n8n to allow the AI to trigger background automation workflows based on chat commands. Implemented virtualized lists using Virtua to handle the rendering of long, streaming chat histories smoothly without causing UI layout shifts.",
     metrics: [
       { label: "LLM Models", value: "6+" },
       { label: "UI Rendering", value: "Virtualized" },
@@ -41,8 +41,8 @@ const projects = [
   {
     index: "02",
     name: "Skribe",
-    subtitle: "Collaborative Role-Based Drafting Platform",
-    type: "Full-Stack · GraphQL · RBAC",
+    subtitle: "Collaborative Drafting Platform",
+    type: "Full-Stack · Collaboration · RBAC",
     accent: "#a78bfa",
     glow: "rgba(167,139,250,0.08)",
     github: "https://github.com/AyushNigam-1/Skribe",
@@ -56,49 +56,73 @@ const projects = [
       "Framer Motion",
     ],
     system:
-      "A full-stack collaborative editor where users co-author drafts via a timeline-based contribution system. Implements strict Role-Based Access Control (Owner, Editor, Contributor) for draft visibility, paragraph approvals, and secure user invitations.",
+      "A collaborative writing platform that allows multiple users to co-author documents. It includes an access control system to manage user permissions, draft visibility, and shared workflows.",
     highlight:
-      "Engineered a secure, viewer-aware Redis caching architecture to prevent data leaks on private drafts. Built a highly optimistic UI using Apollo Client cache mutations and Framer Motion to ensure layout-shift-free interactions during complex state changes.",
+      "Focused on building a smooth, responsive interface by handling data fetching and caching efficiently. Structured the backend to securely manage private content while keeping the collaborative experience seamless.",
     metrics: [
-      { label: "Security", value: "Viewer-Aware Cache" },
-      { label: "State", value: "Optimistic Apollo" },
-      { label: "UI", value: "Glassmorphism" },
+      { label: "Focus", value: "Real-time Collaboration" },
+      { label: "Security", value: "Role-Based Access" },
+      { label: "UI", value: "Fluid Interactions" },
     ],
   },
   {
     index: "03",
     name: "Bewise",
-    subtitle: "Intelligent Knowledge Synthesis & Continuous Learning Platform",
-    type: "AI Engineering · Full-Stack · RAG",
+    subtitle: "AI-Powered Reading & Learning Platform",
+    type: "Full-Stack · RAG · AI",
     accent: "#34d399",
     glow: "rgba(52,211,153,0.08)",
     github: "https://github.com/AyushNigam-1/Bewise",
     live: "https://usebewise.vercel.app/",
     stack: [
-      "Next.js 14",
+      "Next.js",
       "FastAPI",
-      "SQLModel",
       "PostgreSQL",
       "Pinecone",
       "Redis",
-      "React Query",
+      "LangGraph",
     ],
     system:
-      "A specialized RAG-powered reading assistant that utilizes Vector Embeddings to turn static PDF content into an interactive knowledge base. Features a custom 'Hybrid Context' engine where users can granularly select specific books or extracted insights to act as the LLM's grounding truth.",
+      "A full-stack application that processes non-fiction books to extract, deduplicate, and categorize actionable insights. It includes an interactive AI assistant that allows users to ask questions and get answers grounded specifically in the content of the books they are reading.",
     highlight:
-      "Engineered a high-performance backend featuring Redis-layered caching for SQL/Vector queries, custom Session Auth middleware with strict CORS preflight (OPTIONS) handling, and a Next.js frontend optimized for atomic state synchronization and layout-stable Framer Motion animations.",
+      "Built an asynchronous backend pipeline to handle document ingestion and vector retrieval, paired with a responsive frontend focused on smooth layout transitions, dark mode support, and reliable state management across the user interface.",
     metrics: [
-      { label: "Architecture", value: "Decoupled RAG" },
-      { label: "State Sync", value: "React Query + Zustand" },
-      { label: "Performance", value: "Redis Cached" },
-    ],
-    features: [
-      "Optimized PostgreSQL 'Overlap' queries for multi-category filtering using explicit TEXT[] array type-casting via SQLModel.",
-      "Implemented AbortController integration for real-time AI stream cancellation, optimizing LLM token usage and lowering costs.",
-      "Built a consolidated, single-pass API layer that reduced frontend network overhead by 50% through combined metadata and content fetching.",
-      "Engineered a zero-flash Dark Mode implementation using non-blocking script injection for seamless theme persistence.",
+      { label: "Core", value: "Document Processing" },
+      { label: "Feature", value: "Contextual Chat" },
+      { label: "Focus", value: "Responsive UI" },
     ],
   },
+  {
+    index: "04",
+    name: "GuideLayer",
+    subtitle: "Interactive No-Code Product Tours Maker Extension",
+    type: "Full-Stack · Browser Extension · User Experience",
+    accent: "#eab308",
+    glow: "rgba(234,179,8,0.08)",
+    github: "https://github.com/AyushNigam-1/GuideLayer",
+    live: "https://github.com/AyushNigam-1/GuideLayer",
+    stack: [
+      "React",
+      "TypeScript",
+      "Plasmo",
+      "Express.js",
+      "Firebase",
+      "Supabase",
+      "Tailwind CSS",
+      "LangChain",
+      "Groq",
+      "FAISS",
+    ],
+    system:
+      "A browser extension that creates interactive product tours and user onboarding experiences using Driver.js without coding. Features real-time guidance through CSS selector generation, session management via Supabase authentication.",
+    highlight:
+      "Implements dynamic CSS selector generation to target page elements for tours. Uses Driver.js for flexible user guidance. Built with a Plasmo-based frontend extension with TypeScript for robust type safety across the app.",
+    metrics: [
+      { label: "Tour Libraries", value: "2+" },
+      { label: "Auth Providers", value: "Firebase + Supabase" },
+      { label: "Vector Search", value: "FAISS Native" },
+    ],
+  }
 ];
 
 function CornerMark({ accent }: { accent: string }) {
@@ -182,7 +206,6 @@ export function Projects() {
           <div className="mt-8 h-px w-full bg-linear-to-r from-blue-400/30 via-white/5 to-transparent" />
         </motion.div>
 
-        {/* ── PROJECT CARDS ── */}
         <div className="space-y-8">
           {projects.map((project, i) => (
             <motion.div
@@ -197,7 +220,6 @@ export function Projects() {
                 border: "1px solid rgba(255,255,255,0.07)",
               }}
             >
-              {/* Hover glow bg */}
               <motion.div
                 className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                 style={{
@@ -205,7 +227,6 @@ export function Projects() {
                 }}
               />
 
-              {/* Left accent bar */}
               <div
                 className="absolute left-0 top-0 bottom-0 w-0.75 opacity-40 group-hover:opacity-100 transition-opacity duration-300"
                 style={{
@@ -215,7 +236,6 @@ export function Projects() {
 
               <CornerMark accent={project.accent} />
 
-              {/* Large background index */}
               <div
                 className="absolute right-8 top-1/2 -translate-y-1/2 text-[120px] font-black leading-none pointer-events-none select-none opacity-[0.04] group-hover:opacity-[0.07] transition-opacity duration-500 font-mono"
                 style={{ color: project.accent }}
@@ -224,10 +244,8 @@ export function Projects() {
               </div>
 
               <div className="relative p-7 md:p-10 pl-10 md:pl-12">
-                {/* Top row */}
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-7">
                   <div className="flex-1">
-                    {/* Index + type */}
                     <div className="flex items-center gap-3 mb-3">
                       <span
                         className="text-xs font-mono tracking-widest"
@@ -257,7 +275,6 @@ export function Projects() {
                     </p>
                   </div>
 
-                  {/* Action buttons + metrics */}
                   <div className="flex flex-col items-end gap-4 shrink-0">
                     <div className="flex gap-2">
                       <a
@@ -285,7 +302,6 @@ export function Projects() {
                       </a>
                     </div>
 
-                    {/* Metric pills */}
                     <div className="flex gap-2">
                       {project.metrics.map((m) => (
                         <div
@@ -307,7 +323,6 @@ export function Projects() {
                   </div>
                 </div>
 
-                {/* Tech stack */}
                 <div className="flex flex-wrap gap-2 mb-7 pb-7 border-b border-white/5">
                   {project.stack.map((tech) => (
                     <span
@@ -319,7 +334,6 @@ export function Projects() {
                   ))}
                 </div>
 
-                {/* Two-column detail */}
                 <div className="grid md:grid-cols-2 gap-6 md:gap-10">
                   <div>
                     <div className="flex items-center gap-2 mb-3">
@@ -366,7 +380,6 @@ export function Projects() {
           ))}
         </div>
 
-        {/* ── BOTTOM CTA ── */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, Linkedin, Twitter, Mail, Send, Terminal, ArrowUpRight } from "lucide-react";
+import { Github, Mail, Send, Terminal, ArrowUpRight } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -14,9 +14,7 @@ const contactSchema = z.object({
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 const SOCIALS = [
-  { icon: Github, label: "GitHub", sub: "@ayush-nigam", href: "https://github.com/ayush-nigam" },
-  { icon: Linkedin, label: "LinkedIn", sub: "in/ayush-nigam", href: "#" },
-  { icon: Twitter, label: "Twitter", sub: "@ayushnigam_dev", href: "#" },
+  { icon: Github, label: "GitHub", sub: "@ayush-nigam", href: "https://github.com/AyushNigam-1" },
 ];
 
 const AVAILABILITY = [
@@ -66,13 +64,11 @@ export function Contact() {
   return (
     <section id="contact" className="py-28 relative border-t border-white/5 overflow-hidden font-sans">
 
-      {/* Ambient glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-175 h-75 bg-blue-500/5 blur-[140px] pointer-events-none" />
       <div className="absolute top-1/4 right-0 w-75 h-75 bg-indigo-500/5 blur-[100px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
 
-        {/* ── SECTION HEADER ── */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -103,10 +99,8 @@ export function Contact() {
           <div className="mt-8 h-px w-full bg-linear-to-r from-blue-400/30 via-white/5 to-transparent" />
         </motion.div>
 
-        {/* ── MAIN GRID ── */}
         <div className="grid lg:grid-cols-[1fr_1.1fr] gap-10 xl:gap-16">
 
-          {/* LEFT — info panel */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -119,7 +113,6 @@ export function Contact() {
               just want to talk engineering — my inbox is always open.
             </p>
 
-            {/* Availability grid */}
             <div className="grid grid-cols-2 gap-3">
               {AVAILABILITY.map(({ label, value, live }) => (
                 <div
@@ -142,7 +135,6 @@ export function Contact() {
               ))}
             </div>
 
-            {/* Email CTA */}
             <a
               href="mailto:hello@ayushnigam.dev"
               className="group flex items-center justify-between p-5 rounded-xl border border-white/8 bg-white/2 hover:bg-white/5 hover:border-blue-400/30 transition-all"
@@ -154,7 +146,7 @@ export function Contact() {
                 </div>
                 <div>
                   <div className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase mb-0.5">Direct Email</div>
-                  <div className="text-sm font-medium text-white">hello@ayushnigam.dev</div>
+                  <div className="text-sm font-medium text-white">ayushnigam843@gmail.com</div>
                 </div>
               </div>
               <ArrowUpRight
@@ -163,7 +155,6 @@ export function Contact() {
               />
             </a>
 
-            {/* Socials */}
             <div className="space-y-2">
               <div className="text-[10px] font-mono text-zinc-600 tracking-widest uppercase mb-3">Find me on</div>
               {SOCIALS.map(({ icon: Icon, label, sub, href }) => (
@@ -187,7 +178,6 @@ export function Contact() {
             </div>
           </motion.div>
 
-          {/* RIGHT — terminal form */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -198,7 +188,6 @@ export function Contact() {
 
             <div className="relative rounded-2xl bg-[#090c14] border border-white/10 overflow-hidden shadow-2xl">
 
-              {/* Terminal bar */}
               <div className="flex items-center gap-3 px-5 py-3.5 bg-white/2 border-b border-white/5">
                 <div className="flex gap-1.5">
                   <div className="w-3 h-3 rounded-full bg-red-500/70" />
@@ -230,7 +219,6 @@ export function Contact() {
                 ) : (
                   <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
 
-                    {/* Name + Email row */}
                     <div className="grid sm:grid-cols-2 gap-4">
                       <div className="space-y-1.5">
                         <label className="text-[11px] font-mono text-zinc-500 tracking-widest uppercase">Name</label>
@@ -282,7 +270,6 @@ export function Contact() {
                           </>
                         )}
                       </span>
-                      {/* Shimmer */}
                       <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 bg-linear-to-r from-transparent via-white/15 to-transparent" />
                     </button>
 

@@ -4,7 +4,7 @@ import { Menu, X, ArrowUpRight } from "lucide-react";
 
 const NAV_LINKS = [
   { name: "Competencies", href: "#competencies" },
-  { name: "Architecture & Projects", href: "#projects" },
+  { name: "Projects", href: "#projects" },
   { name: "Philosophy", href: "#philosophy" },
   { name: "Contact", href: "#contact" },
 ];
@@ -14,7 +14,6 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
 
-  /* ── scroll + active section tracking ── */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -53,7 +52,6 @@ export function Navbar() {
           boxShadow: "0 1px 40px rgba(0,0,0,0.5)",
         } : undefined}
       >
-        {/* Thin progress-style top glow line when scrolled */}
         {scrolled && (
           <div
             className="absolute top-0 left-0 right-0 h-px pointer-events-none"
@@ -63,7 +61,6 @@ export function Navbar() {
 
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
 
-          {/* Logo */}
           <motion.a
             href="#"
             initial={{ opacity: 0, x: -16 }}
@@ -74,7 +71,6 @@ export function Navbar() {
             <div className="relative w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden border border-white/10 group-hover:border-blue-400/40 transition-colors duration-300"
               style={{ background: "rgba(96,165,250,0.08)" }}
             >
-              {/* Corner accents */}
               <div className="absolute top-0 left-0 w-2 h-px bg-blue-400/60" />
               <div className="absolute top-0 left-0 h-2 w-px bg-blue-400/60" />
               <div className="absolute bottom-0 right-0 w-2 h-px bg-blue-400/40" />
@@ -86,7 +82,6 @@ export function Navbar() {
             </span>
           </motion.a>
 
-          {/* Desktop Nav */}
           <nav className="hidden md:flex items-center gap-1">
             {NAV_LINKS.map((link, i) => (
               <motion.a
@@ -100,7 +95,6 @@ export function Navbar() {
                   : "text-zinc-500 hover:text-zinc-200"
                   }`}
               >
-                {/* Active pill */}
                 {isActive(link.href) && (
                   <motion.span
                     layoutId="nav-active"
@@ -116,7 +110,6 @@ export function Navbar() {
               </motion.a>
             ))}
 
-            {/* CTA */}
             <motion.a
               href="#contact"
               initial={{ opacity: 0, scale: 0.92 }}
@@ -132,14 +125,12 @@ export function Navbar() {
                 Let's Talk
                 <ArrowUpRight size={13} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
               </span>
-              {/* Shimmer */}
-              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
+              <span className="absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-500 bg-linear-to-r from-transparent via-white/20 to-transparent" />
             </motion.a>
           </nav>
 
-          {/* Mobile toggle */}
           <button
-            className="md:hidden relative w-9 h-9 flex items-center justify-center rounded-lg border border-white/8 bg-white/[0.03] text-zinc-400 hover:text-white hover:border-white/16 transition-all"
+            className="md:hidden relative w-9 h-9 flex items-center justify-center rounded-lg border border-white/8 bg-white/3 text-zinc-400 hover:text-white hover:border-white/16 transition-all"
             onClick={() => setMobileOpen(o => !o)}
             aria-label="Toggle menu"
           >
@@ -167,7 +158,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -8 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-[57px] inset-x-0 z-40 md:hidden border-b border-white/8 px-6 py-4 flex flex-col gap-1"
+            className="fixed top-14.25 inset-x-0 z-40 md:hidden border-b border-white/8 px-6 py-4 flex flex-col gap-1"
             style={{
               background: "rgba(5, 7, 15, 0.97)",
               backdropFilter: "blur(24px)",
@@ -183,7 +174,7 @@ export function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-medium transition-all ${isActive(link.href)
                   ? "text-white bg-blue-400/8 border border-blue-400/20"
-                  : "text-zinc-500 hover:text-white hover:bg-white/[0.04]"
+                  : "text-zinc-500 hover:text-white hover:bg-white/4"
                   }`}
               >
                 <span>{link.name}</span>
