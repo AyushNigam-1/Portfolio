@@ -38,16 +38,8 @@ export function Footer() {
           {/* Brand blurb */}
           <div className="flex flex-col gap-5 max-w-xs">
             <a href="#" className="group flex items-center gap-3 w-fit">
-              <div
-                className="relative w-9 h-9 rounded-lg flex items-center justify-center border border-white/10 group-hover:border-blue-400/40 transition-colors duration-300 overflow-hidden"
-                style={{ background: "rgba(96,165,250,0.08)" }}
-              >
-                <div className="absolute top-0 left-0 w-2 h-px bg-blue-400/60" />
-                <div className="absolute top-0 left-0 h-2 w-px bg-blue-400/60" />
-                <div className="absolute bottom-0 right-0 w-2 h-px bg-blue-400/40" />
-                <div className="absolute bottom-0 right-0 h-2 w-px bg-blue-400/40" />
-                <span className="font-mono font-black text-sm text-blue-400 tracking-tighter">AN</span>
-              </div>
+              <img src="/favicon.ico" className="w-7" />
+
               <span className="font-semibold text-base text-white/80 group-hover:text-white transition-colors">
                 Ayush Nigam
               </span>

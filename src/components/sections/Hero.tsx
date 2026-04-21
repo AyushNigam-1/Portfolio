@@ -2,21 +2,19 @@ import { useEffect, useState, useRef } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 import { ArrowRight, Terminal, Cpu, Globe } from "lucide-react";
 
-const TECH_STACK = ["TypeScript", "Next.js", "FastAPI", "Python", "LangGraph", "Redis", "MongoDB", "Docker"];
-
 const STATS = [
   { label: "Stack Depth", value: "Full", icon: Cpu },
   { label: "Uptime", value: "99.9%", icon: Globe },
 ];
 
 const TERMINAL_LINES = [
-  { delay: 0.8, prompt: true, text: "ls -la ./skills" },
-  { delay: 1.2, prompt: false, text: "drwxr-xr-x  AI/ML_Systems  LangGraph  RAG  Agents" },
-  { delay: 1.5, prompt: false, text: "drwxr-xr-x  Backend        FastAPI    Redis  MongoDB" },
-  { delay: 1.8, prompt: false, text: "drwxr-xr-x  Frontend       Next.js    Framer Motion" },
-  { delay: 2.2, prompt: true, text: "cat ./philosophy.md" },
-  { delay: 2.8, prompt: false, text: "→  Veni, Vidi, Vici. Shipping is the only metric.", accent: true },
-  { delay: 3.4, prompt: true, text: "", cursor: true },
+  { delay: 0.8, prompt: true, text: "cat ./skills.yml" },
+  { delay: 1.2, prompt: false, text: "AI_ML:   [LangChain, RAG, Agents, MCP, N8N]" },
+  { delay: 1.5, prompt: false, text: "Backend: [FastAPI, Express, GraphQL, PostgreSQL, MongoDB]" },
+  { delay: 1.8, prompt: false, text: "Frontend: [Next.js, TanStack Query, Vue.js, React.js]" },
+  { delay: 2.4, prompt: true, text: "cat ./philosophy.md" },
+  { delay: 3.0, prompt: false, text: "→  Veni, Vidi, Vici. Shipping is the only metric.", accent: true },
+  { delay: 3.6, prompt: true, text: "", cursor: true },
 ];
 
 function Scanlines() {
@@ -123,19 +121,7 @@ export function Hero() {
             </span>
             <span className="text-xs font-mono text-emerald-400/80 tracking-widest uppercase">Systems Online</span>
           </div>
-          <div className="hidden md:flex items-center gap-6">
-            {TECH_STACK.slice(0, 5).map((t, i) => (
-              <motion.span
-                key={t}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.1 * i }}
-                className="text-xs font-mono text-white/20 hover:text-white/50 transition-colors cursor-default"
-              >
-                {t}
-              </motion.span>
-            ))}
-          </div>
+
           <span className="text-xs font-mono text-white/20">v2.0.0</span>
         </motion.div>
 
@@ -234,7 +220,6 @@ export function Hero() {
             </motion.div>
           </div>
 
-          {/* RIGHT COLUMN — Terminal */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
@@ -298,16 +283,14 @@ export function Hero() {
                 )}
               </div>
 
-              <div className="flex items-center justify-between px-4 py-2 bg-blue-500/10 border-t border-blue-500/20">
-                <div className="flex items-center gap-4">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 sm:gap-4 px-4 py-3 sm:py-2 bg-blue-500/10 border-t border-blue-500/20">
+
+                <div className="flex items-center justify-between w-full sm:w-auto sm:justify-start gap-4">
                   <span className="text-[10px] font-mono text-blue-400/70">BRANCH: main</span>
                   <span className="text-[10px] font-mono text-emerald-400/70">● CLEAN</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  {TECH_STACK.slice(0, 4).map(t => (
-                    <span key={t} className="text-[10px] font-mono text-zinc-500 hover:text-zinc-300 transition-colors cursor-default">{t}</span>
-                  ))}
-                </div>
+
+
               </div>
             </div>
           </motion.div>
@@ -320,7 +303,7 @@ export function Hero() {
           className="my-6 pt-4 border-t border-white/5 flex flex-col md:flex-row items-center justify-center md:justify-between gap-6 md:gap-4"
         >
           <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6">
-            {["Kanpur, IN", "UTC+5:30", "Open to Remote"].map((item) => (
+            {["INDIA", "UTC+5:30", "Open to Remote"].map((item) => (
               <span key={item} className="text-xs font-mono text-zinc-600 hover:text-zinc-400 transition-colors text-center">
                 {item}
               </span>

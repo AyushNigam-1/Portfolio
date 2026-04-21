@@ -12,8 +12,8 @@ const projects = [
   {
     index: "01",
     name: "Briefly.AI",
-    subtitle: "AI Assistant Workspace & Automation Tool",
-    type: "Full-Stack · AI · Automation",
+    subtitle: "Context-Aware AI Chat Workspace",
+    type: "Full-Stack · AI · Integrations",
     accent: "#60a5fa",
     glow: "rgba(96,165,250,0.08)",
     github: "https://github.com/AyushNigam-1/Briefly.AI",
@@ -21,21 +21,19 @@ const projects = [
     stack: [
       "Next.js",
       "FastAPI",
-      "n8n",
       "Groq",
-      "Redis",
       "MongoDB",
-      "Framer Motion",
-      "Virtua",
+      "React Query",
+      "Tailwind CSS",
     ],
     system:
-      "A full-stack AI chat application that manages user sessions, extracts facts for long-term memory, and supports multiple language models (Llama, Qwen, Kimi) alongside an incognito mode for stateless interactions.",
+      "A full-stack chat application that allows users to interact with multiple AI models. It includes features like document analysis, a private incognito mode, and a memory system that extracts and saves basic user preferences across conversations.",
     highlight:
-      "Integrated n8n to allow the AI to trigger background automation workflows based on chat commands. Implemented virtualized lists using Virtua to handle the rendering of long, streaming chat histories smoothly without causing UI layout shifts.",
+      "Built a custom tool routing system to let the AI interact with external apps (like Google Drive and Slack etc). Focused heavily on frontend responsiveness by implementing optimistic UI updates and managing complex state for real-time chat streaming.",
     metrics: [
-      { label: "LLM Models", value: "6+" },
-      { label: "UI Rendering", value: "Virtualized" },
-      { label: "Task Engine", value: "n8n Native" },
+      { label: "Focus", value: "Realtime Chat" },
+      { label: "Context", value: "File Processing" },
+      { label: "UX", value: "Optimistic State" },
     ],
   },
   {
@@ -49,27 +47,27 @@ const projects = [
     live: "https://skribe-workspace.vercel.app/",
     stack: [
       "React",
-      "TypeScript",
       "Apollo GraphQL",
       "Node.js",
-      "Redis",
-      "Framer Motion",
+      "MongoDB",
+      "Socket.io",
+      "Tailwind CSS",
     ],
     system:
-      "A collaborative writing platform that allows multiple users to co-author documents. It includes an access control system to manage user permissions, draft visibility, and shared workflows.",
+      "A writing platform where users co-author stories through a proposal and review system. It includes live discussion panels, real-time notifications, and workspace permissions to manage who can view, edit, or join a draft.",
     highlight:
-      "Focused on building a smooth, responsive interface by handling data fetching and caching efficiently. Structured the backend to securely manage private content while keeping the collaborative experience seamless.",
+      "Focused on creating a clean, distraction-free writing experience with smooth interface transitions. Structured the data flow to reliably handle real-time synchronization for live chats and workspace notifications.",
     metrics: [
-      { label: "Focus", value: "Real-time Collaboration" },
-      { label: "Security", value: "Role-Based Access" },
-      { label: "UI", value: "Fluid Interactions" },
+      { label: "Core", value: "Shared Drafting" },
+      { label: "Workflow", value: "Draft Proposals" },
+      { label: "Access", value: "Workspace Roles" },
     ],
   },
   {
     index: "03",
     name: "Bewise",
-    subtitle: "AI-Powered Reading & Learning Platform",
-    type: "Full-Stack · RAG · AI",
+    subtitle: "AI-Powered Book Processing & Learning Platform",
+    type: "Full-Stack · AI Pipeline · RAG",
     accent: "#34d399",
     glow: "rgba(52,211,153,0.08)",
     github: "https://github.com/AyushNigam-1/Bewise",
@@ -78,49 +76,44 @@ const projects = [
       "Next.js",
       "FastAPI",
       "PostgreSQL",
-      "Pinecone",
-      "Redis",
+      "Redis Queue",
       "LangGraph",
     ],
     system:
-      "A full-stack application that processes non-fiction books to extract, deduplicate, and categorize actionable insights. It includes an interactive AI assistant that allows users to ask questions and get answers grounded specifically in the content of the books they are reading.",
+      "A full-stack application that processes non-fiction PDFs to automatically extract, semantically deduplicate, and categorize actionable insights, allowing users to build and explore an interactive knowledge base.",
     highlight:
-      "Built an asynchronous backend pipeline to handle document ingestion and vector retrieval, paired with a responsive frontend focused on smooth layout transitions, dark mode support, and reliable state management across the user interface.",
+      "Developed an asynchronous background pipeline to handle heavy document extraction without server timeouts, paired with a responsive frontend featuring real-time job polling, and smooth layout animations.",
     metrics: [
-      { label: "Core", value: "Document Processing" },
-      { label: "Feature", value: "Contextual Chat" },
-      { label: "Focus", value: "Responsive UI" },
+      { label: "Architecture", value: "Async Pipeline" },
+      { label: "Core Feature", value: "Insight Extraction" },
+      { label: "UX", value: "Live Task Polling" },
     ],
   },
   {
     index: "04",
     name: "GuideLayer",
-    subtitle: "Interactive No-Code Product Tours Maker Extension",
+    subtitle: "No-Code Product Tour Builder",
     type: "Full-Stack · Browser Extension · User Experience",
     accent: "#eab308",
     glow: "rgba(234,179,8,0.08)",
     github: "https://github.com/AyushNigam-1/GuideLayer",
-    live: "https://github.com/AyushNigam-1/GuideLayer",
     stack: [
       "React",
       "TypeScript",
       "Plasmo",
-      "Express.js",
-      "Firebase",
       "Supabase",
       "Tailwind CSS",
-      "LangChain",
-      "Groq",
-      "FAISS",
+      "Driver.js",
+      "Better Auth"
     ],
     system:
-      "A browser extension that creates interactive product tours and user onboarding experiences using Driver.js without coding. Features real-time guidance through CSS selector generation, session management via Supabase authentication.",
+      "A full-stack infrastructure for building interactive, media-rich product tours without coding. Features a Plasmo-based extension for visual building, action-gated progression (click/text input requirements), and a lightweight Vanilla JS embed script for seamless host-site integration.",
     highlight:
-      "Implements dynamic CSS selector generation to target page elements for tours. Uses Driver.js for flexible user guidance. Built with a Plasmo-based frontend extension with TypeScript for robust type safety across the app.",
+      "Engineered a custom hydration system for SPA state persistence across page routing, implemented asynchronous DOM polling to eliminate race conditions, and established a conflict-free styling architecture to ensure perfect rendering across diverse host environments.",
     metrics: [
-      { label: "Tour Libraries", value: "2+" },
-      { label: "Auth Providers", value: "Firebase + Supabase" },
-      { label: "Vector Search", value: "FAISS Native" },
+      { label: "Engine", value: "Driver.js Powered" },
+      { label: "Tracking", value: "Smart Resume" },
+      { label: "Assets", value: "Rich Media" },
     ],
   }
 ];
@@ -286,20 +279,23 @@ export function Projects() {
                         <Github size={13} />
                         Source
                       </a>
-                      <a
-                        href={project.live}
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono border transition-all"
-                        style={{
-                          color: project.accent,
-                          borderColor: project.accent + "40",
-                          background: project.accent + "10",
-                        }}
-                      >
-                        <ExternalLink size={13} />
-                        Live
-                      </a>
+                      {
+                        project.live ? <a
+                          href={project.live}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono border transition-all"
+                          style={{
+                            color: project.accent,
+                            borderColor: project.accent + "40",
+                            background: project.accent + "10",
+                          }}
+                        >
+                          <ExternalLink size={13} />
+                          Live
+                        </a> : ""
+                      }
+
                     </div>
 
                     <div className="flex gap-2">
@@ -314,7 +310,7 @@ export function Projects() {
                           >
                             {m.value}
                           </div>
-                          <div className="text-[9px] font-mono text-zinc-600 mt-0.5">
+                          <div className="text-[9px] no-wrap font-mono text-zinc-600 mt-0.5">
                             {m.label}
                           </div>
                         </div>
@@ -394,7 +390,7 @@ export function Projects() {
             </span>
           </div>
           <a
-            href="https://github.com"
+            href="https://github.com/AyushNigam-1?tab=repositories"
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-white/10 bg-white/3 text-sm font-mono text-zinc-400 hover:text-white hover:border-white/20 hover:bg-white/6 transition-all"

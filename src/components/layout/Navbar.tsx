@@ -68,15 +68,8 @@ export function Navbar() {
             transition={{ duration: 0.5 }}
             className="group flex items-center gap-3"
           >
-            <div className="relative w-9 h-9 rounded-lg flex items-center justify-center overflow-hidden border border-white/10 group-hover:border-blue-400/40 transition-colors duration-300"
-              style={{ background: "rgba(96,165,250,0.08)" }}
-            >
-              <div className="absolute top-0 left-0 w-2 h-px bg-blue-400/60" />
-              <div className="absolute top-0 left-0 h-2 w-px bg-blue-400/60" />
-              <div className="absolute bottom-0 right-0 w-2 h-px bg-blue-400/40" />
-              <div className="absolute bottom-0 right-0 h-2 w-px bg-blue-400/40" />
-              <span className="font-mono font-black text-sm text-blue-400 tracking-tighter">AN</span>
-            </div>
+
+            <img src="/favicon.ico" className="w-7" />
             <span className="hidden sm:block font-semibold text-base tracking-tight text-white/90 group-hover:text-white transition-colors duration-200">
               Ayush Nigam
             </span>
